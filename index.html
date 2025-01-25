@@ -89,27 +89,27 @@
 
       <!-- OPERATION: LOAN -->
       <div class="operation operation--loan">
-        <h2>Request loan</h2>
+        <h2>Deposit Money</h2>
         <form class="form form--loan">
-          <input type="number" class="form__input form__input--loan-amount" />
-          <button class="form__btn form__btn--loan">&rarr;</button>
-          <label class="form__label form__label--loan">Amount</label>
+          <input
+            type="number"
+            class="form__input form__input--deposit-amount"
+          />
+          <button class="form__btn form__btn--deposit">&rarr;</button>
+          <label class="form__label form__label--deposit">Amount</label>
         </form>
       </div>
 
       <!-- OPERATION: CLOSE -->
-      <div class="operation operation--close">
-        <h2>Close account</h2>
-        <form class="form form--close">
-          <input type="text" class="form__input form__input--user" />
+      <div class="operation operation--withdraw red">
+        <h2>Withdraw money</h2>
+        <form class="form form--loan">
           <input
-            type="password"
-            maxlength="6"
-            class="form__input form__input--pin"
+            type="number"
+            class="form__input form__input--withdraw-amount"
           />
-          <button class="form__btn form__btn--close">&rarr;</button>
-          <label class="form__label">Confirm user</label>
-          <label class="form__label">Confirm PIN</label>
+          <button class="form__btn form__btn--withdraw">&rarr;</button>
+          <label class="form__label form__label--withdraw">Amount</label>
         </form>
       </div>
 

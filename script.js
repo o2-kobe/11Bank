@@ -45,17 +45,18 @@ const containerMovements = document.querySelector('.movements');
 
 const btnLogin = document.querySelector('.login__btn');
 const btnTransfer = document.querySelector('.form__btn--transfer');
-const btnLoan = document.querySelector('.form__btn--loan');
-const btnClose = document.querySelector('.form__btn--close');
+const btnDeposit = document.querySelector('.form__btn--deposit');
+const btnWithdraw = document.querySelector('.form__btn--withdraw');
 const btnSort = document.querySelector('.btn--sort');
 
 const inputLoginUsername = document.querySelector('.login__input--user');
 const inputLoginPin = document.querySelector('.login__input--pin');
 const inputTransferTo = document.querySelector('.form__input--to');
 const inputTransferAmount = document.querySelector('.form__input--amount');
-const inputLoanAmount = document.querySelector('.form__input--loan-amount');
-const inputCloseUsername = document.querySelector('.form__input--user');
-const inputClosePin = document.querySelector('.form__input--pin');
+const inputDepositAmount = document.querySelector(
+  '.form__input--deposit-amount'
+);
+const inputWithdraw = document.querySelector('.form__input--withdraw-amount');
 
 // CREATING DOM ELEMENTS
 function displayMovements(movements, sort = false) {
@@ -178,43 +179,29 @@ btnTransfer.addEventListener('click', function (e) {
   inputTransferTo.blur();
 });
 
-// IMPLEMETING LOAN
-btnLoan.addEventListener('click', function (e) {
+// IMPLEMETING DEPOSIT
+btnDeposit.addEventListener('click', function (e) {
   e.preventDefault();
-  const amount = Number(inputLoanAmount.value);
+  const amount = Number(inputDepositAmount.value);
   if (amount > 0 && currentAccount.movements.some(mov => mov > 0.1 * amount)) {
     currentAccount.movements.push(amount);
     updateUI(currentAccount);
   }
-  inputLoanAmount.value = '';
-  inputLoanAmount.blur();
+  inputDepositAmount.value = '';
+  inputDepositAmount.blur();
 });
 
 // IMPLEMENTING CLOSING THE ACCOUNT
-btnClose.addEventListener('click', function (e) {
+btnWithdraw.addEventListener('click', function (e) {
   e.preventDefault();
-  if (
-    inputCloseUsername.value === currentAccount.username &&
-    Number(inputClosePin.value) === currentAccount.pin
-  ) {
-    const index = accounts.findIndex(
-      acc => acc.username === currentAccount.username
-    );
-    // DELETE ACCOUNT
-
-    accounts.splice(index, 1);
-
-    // HIDE UI
-    containerApp.style.opacity = 0;
-
-    // EMPTYING THE TRANSFERS BOX
-    inputClosePin.value = inputCloseUsername.value = '';
-    inputClosePin.blur();
-    inputCloseUsername.blur();
-
-    // CHANGING THE WELCOME MESSAGE
-    labelWelcome.textContent = 'Log in to get started';
+  const amount = Number(inputWithdraw.value);
+  if (amount < currentAccount.balance) {
+    currentAccount.movements.push(-amount);
+    updateUI(currentAccount);
   }
+
+  inputWithdraw.value = '';
+  inputWithdraw.blur();
 });
 
 let sorted = false;
