@@ -2,28 +2,32 @@
 
 // Data
 const account1 = {
-  owner: 'Jonas Schmedtmann',
+  owner: 'Nana Kwame',
+  number: 1704532343, 
   movements: [200, 450, -400, 3000, -650, -130, 70, 1300],
   interestRate: 1.2,
   pin: 1111,
 };
 
 const account2 = {
-  owner: 'Jessica Davis',
+  owner: 'Samuel Mensah',
+  number: 1706296514, 
   movements: [5000, 3400, -150, -790, -3210, -1000, 8500, -30],
   interestRate: 1.5,
   pin: 2222,
 };
 
 const account3 = {
-  owner: 'Steven Thomas Williams',
+  owner: 'Michael Andoh',
+  number: 1709158523, 
   movements: [200, -200, 340, -300, -20, 50, 400, -460],
   interestRate: 0.7,
   pin: 3333,
 };
 
 const account4 = {
-  owner: 'Sarah Smith',
+  owner: 'Sarah Addo',
+  number: 1704580531, 
   movements: [430, 1000, 700, 50, 90],
   interestRate: 1,
   pin: 4444,
@@ -57,6 +61,17 @@ const inputDepositAmount = document.querySelector(
   '.form__input--deposit-amount'
 );
 const inputWithdraw = document.querySelector('.form__input--withdraw-amount');
+
+// Popup Elements
+const popup = document.getElementById('accountPopup');
+const closePopup = document.getElementById('closePopup');
+const logo = document.querySelector('.logo');
+const overlay = document.querySelector('.overlay');
+const popupOwnerSpan = document.querySelector('.popup-content .owner'); 
+const popupUsernameSpan = document.querySelector('.popup-content .username'); 
+const popupNumberSpan = document.querySelector('.popup-content .account-number'); 
+const popupBalanceSpan = document.querySelector('.popup-content .account-balance'); 
+const popupPINSpan = document.querySelector('.popup-content .pin');  
 
 // CREATING DOM ELEMENTS
 function displayMovements(movements, sort = false) {
@@ -203,6 +218,35 @@ btnWithdraw.addEventListener('click', function (e) {
   inputWithdraw.value = '';
   inputWithdraw.blur();
 });
+
+// Popup functionality
+logo.addEventListener('click', function () {
+  if(!currentAccount) {
+    return; 
+  }
+  popupOwnerSpan.textContent = currentAccount.owner; 
+  popupUsernameSpan.textContent = currentAccount.username; 
+  popupNumberSpan.textContent = currentAccount.number; 
+  popupBalanceSpan.textContent = `${currentAccount.balance}€`;   
+  popupPINSpan.textContent = currentAccount.pin; 
+  popup.style.display = 'block';
+  overlay.style.display = 'block'; // Show overlay
+});
+
+closePopup.addEventListener('click', function () {
+  popup.style.display = 'none';
+  overlay.style.display = 'none'; // Hide overlay
+});
+
+window.addEventListener('click', function (e) {
+  if (e.target === popup || e.target === overlay) {
+    popup.style.display = 'none';
+    overlay.style.display = 'none'; // Hide overlay
+  }
+});
+
+
+
 
 let sorted = false;
 btnSort.addEventListener('click', function (e) {
