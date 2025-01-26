@@ -15,6 +15,7 @@
     <title>Bankist</title>
   </head>
   <body>
+    <div class="overlay"></div>
     <!-- TOP NAVIGATION -->
     <nav>
       <p class="welcome">Log in to get started</p>
@@ -118,6 +119,19 @@
         You will be logged out in <span class="timer">05:00</span>
       </p>
     </main>
+
+    <!-- POPUP WINDOW -->
+    <div class="popup" id="accountPopup" style="display: none;">
+      <div class="popup-content">
+        <span class="close-button" id="closePopup">&times;</span>
+        <h2>Account Details</h2>
+        <p>Name: <span class="owner"></span></p>
+        <p>Account Number: <span class="account-number"></span></p>
+        <p>Account Balance: <span class="account-balance"></span></p>
+        <p>Username: <span class="username"></span></p>
+        <p>PIN: <span class="pin"></span></p>
+      </div>
+    </div>
 
     <script src="script.js"></script>
   </body>
