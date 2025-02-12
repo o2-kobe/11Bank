@@ -12,6 +12,10 @@
     />
 
     <link rel="stylesheet" href="style.css" />
+<script >
+  document.querySelector("#user").value = "nk";
+document.querySelector("#pin").value = "1111";
+</script>
     <title>Bankist</title>
   </head>
   <body>
@@ -24,6 +28,7 @@
         <input
           type="text"
           placeholder="user"
+          id="user"
           value="nk"
           class="login__input login__input--user"
         />
@@ -32,6 +37,7 @@
           type="text"
           placeholder="PIN"
           maxlength="4"
+id="pin"
           value="1111"
           class="login__input login__input--pin"
         />
